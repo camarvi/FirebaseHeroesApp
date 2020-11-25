@@ -16,31 +16,31 @@
 <div class="row animated fadeIn faster">
     <div class="col">
 
-        <form>
+        <form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
             <div class="form-group">
                 <label>Firebase ID</label>
-                <input type="text" class="form-control" placeholder="Firebase Id" disabled="disabled">
+                <input type="text" class="form-control" placeholder="Firebase Id" disabled="disabled" formControlName="firebaseid">
                 <small class="form-text text-muted">Este campo es autogenerado</small>
             </div>
 
             <div class="form-group">
                 <label>Nombre</label>
-                <input type="text" class="form-control" placeholder="Nombre del Heroe" required>
+                <input type="text" class="form-control" placeholder="Nombre del Heroe" formControlName="nombre" [class.is-invalid]="nombreNoValido">
             </div>
 
             <div class="form-group">
                 <label>Poder</label>
-                <input type="text" class="form-control" placeholder="Poder del Heroe">
+                <input type="text" class="form-control" placeholder="Poder del Heroe" formControlName="poder" [class.is-invalid]="poderNoValido">
             </div>
 
             <div class="form-group">
                 <label>Estado</label>
                 <br>
-                <button class="btn btn-outline-success w-50" type="button">
+                <button *ngIf="heroe.vivo" (click)="heroe.vivo = false" class="btn btn-outline-success w-50" type="button">
                     <i class="fa fa-smile-wink"></i>
                     Vivo
                 </button>
-                <button class="btn btn-outline-danger w-50" type="button">
+                <button *ngIf="!heroe.vivo" (click)="heroe.vivo = true" class="btn btn-outline-danger w-50" type="button">
                     <i class="fa fa-dizzy"></i>
                     Muerto
                 </button>
