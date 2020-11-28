@@ -34,23 +34,36 @@ export class HeroeComponent implements OnInit {
 
   crearFormulario(){
     this.forma = this.fb.group({
-      firebaseid : [this.heroe.id,[]],
-      nombre : [this.heroe.nombre, [Validators.required]],
-      poder : [this.heroe.poder,[Validators.required]]//,
+      //firebaseid : [this.heroe.id,[]],
+      //nombre : [this.heroe.nombre, [Validators.required]],
+      //poder : [this.heroe.poder,[Validators.required]]//,
+      firebaseid : ['',[]],
+      nombre : ['', [Validators.required]],
+      poder : ['',[Validators.required]]//,
+
+
       //estado : [this.heroe.vivo]
     })
   }
 
   crearListeners(){
-    this.forma.valueChanges.subscribe( valor =>{
-      console.log(valor);
-    });
+    //this.forma.valueChanges.subscribe( valor =>{
+    //  console.log(valor);
+    //});
   }
 
   guardar(){
+    //this.heroe.nombre ="fdsfdsfsadf"
     console.log(" Pulsado Guardar");
     console.log(this.heroe);
     console.log(this.forma);
+
+    if (this.forma.invalid) {
+      console.log("Error en formulario");
+      return ;
+
+    }
+
   }
 
 }
