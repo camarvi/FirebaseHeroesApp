@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HeroeModel } from '../../models/heroe.model';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { HeroesService } from '../../services/heroes.service';
 
 @Component({
   selector: 'app-heroe',
@@ -13,7 +14,8 @@ export class HeroeComponent implements OnInit {
 
   forma : FormGroup;
 
-  constructor(private fb : FormBuilder) {
+  constructor(private fb : FormBuilder,
+              private heroesServices : HeroesService) {
 
     this.crearFormulario();
     this.crearListeners();
@@ -54,15 +56,20 @@ export class HeroeComponent implements OnInit {
 
   guardar(){
     //this.heroe.nombre ="fdsfdsfsadf"
-    console.log(" Pulsado Guardar");
-    console.log(this.heroe);
-    console.log(this.forma);
+    //console.log(" Pulsado Guardar");
+    //console.log(this.heroe);
+    //console.log(this.forma);
 
     if (this.forma.invalid) {
       console.log("Error en formulario");
       return ;
 
     }
+
+    this.heroesServices.crearHeroe(this.heroe).subscribe(
+      resp => {
+          console.log(resp);
+      });
 
   }
 

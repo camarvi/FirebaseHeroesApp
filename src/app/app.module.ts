@@ -8,6 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+// Realizar peticiones http a un servicio (firebase)
+import {HttpClientModule } from '@angular/common/http';
+
 
 import { AppComponent } from './app.component';
 import { HeroeComponent } from './pages/heroe/heroe.component';
@@ -23,7 +26,8 @@ import { HeroesComponent } from './pages/heroes/heroes.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
     //ReactiveFormsModule,
     //FormsModule
   ],
