@@ -25,5 +25,17 @@ export class HeroesService {
           );
   }
 
+  actualizarHeroe(heroe : HeroeModel){
+
+    //Creo una copia del objeto heroe
+    const heroeTemp ={
+      ...heroe
+    };  
+
+    delete heroeTemp.id
+
+    return this.http.put(`${ this.url }/heroes/${heroe.id}.json`,heroeTemp);
+}
+
 
 }
