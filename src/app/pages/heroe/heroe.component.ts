@@ -59,10 +59,6 @@ export class HeroeComponent implements OnInit {
   }
 
   guardar(){
-    //this.heroe.nombre ="fdsfdsfsadf"
-    //console.log(" Pulsado Guardar");
-    //console.log(this.heroe);
-    //console.log(this.forma);
 
     if (this.forma.invalid) {
       console.log("Error en formulario");
