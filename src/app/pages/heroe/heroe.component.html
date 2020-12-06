@@ -25,12 +25,12 @@
 
             <div class="form-group">
                 <label>Nombre</label>
-                <input type="text" class="form-control" placeholder="Nombre del Heroe" [(ngModel)]="heroe.nombre" formControlName="nombre" [class.is-invalid]="nombreNoValido">
+                <input type="text" class="form-control" placeholder="Nombre del Heroe" formControlName="nombre" [(ngModel)]="heroe.nombre" [class.is-invalid]="nombreNoValido">
             </div>
 
             <div class="form-group">
                 <label>Poder</label>
-                <input type="text" class="form-control" placeholder="Poder del Heroe" [(ngModel)]="heroe.poder" formControlName="poder" [class.is-invalid]="poderNoValido">
+                <input type="text" class="form-control" placeholder="Poder del Heroe" formControlName="poder" [(ngModel)]="heroe.poder" [class.is-invalid]="poderNoValido">
             </div>
 
             <div class="form-group">

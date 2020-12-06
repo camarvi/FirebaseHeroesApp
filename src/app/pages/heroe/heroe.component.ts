@@ -6,6 +6,7 @@ import { HeroesService } from '../../services/heroes.service';
 // Importar SweetAlert
 import Swal from 'sweetalert2';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-heroe',
@@ -19,13 +20,25 @@ export class HeroeComponent implements OnInit {
   forma : FormGroup;
 
   constructor(private fb : FormBuilder,
-              private heroesServices : HeroesService) {
+              private heroesServices : HeroesService,
+              private route : ActivatedRoute) {
 
     this.crearFormulario();
-    this.crearListeners();
+  
    }
 
   ngOnInit() {
+    
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if (id !== 'nuevo'){
+      this.heroesServices.getHeroe(id)
+          .subscribe( (resp:HeroeModel) =>{
+            this.heroe = resp;
+            this.heroe.id = id;
+          })
+    }
+
   }
 
 
@@ -46,18 +59,17 @@ export class HeroeComponent implements OnInit {
       firebaseid : ['',[]],
       nombre : ['', [Validators.required]],
       poder : ['',[Validators.required]]//,
-
+      
 
       //estado : [this.heroe.vivo]
     })
-  }
 
-  crearListeners(){
-    //this.forma.valueChanges.subscribe( valor =>{
-    //  console.log(valor);
+    //this.forma.valueChanges.subscribe(val => {
+    //  this.heroe = val;
     //});
   }
 
+  
   guardar(){
 
     if (this.forma.invalid) {
@@ -65,6 +77,8 @@ export class HeroeComponent implements OnInit {
       return ;
 
     }
+
+  
 
     Swal.fire({
       allowOutsideClick : false,
